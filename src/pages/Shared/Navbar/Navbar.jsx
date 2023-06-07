@@ -1,8 +1,15 @@
-
 import { Link } from "react-router-dom";
-import logo from '../../../assets/logo.png'
+import logo from "../../../assets/logo.png";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+  console.log(user);
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch((error) => console.log(error));
+  };
   const navOptions = (
     <>
       <li>
@@ -14,11 +21,17 @@ const Navbar = () => {
       <li>
         <Link to="classes">Classes</Link>
       </li>
+
+      {user && (
+        <li>
+          <Link to="dashbord">DashBord</Link>
+        </li>
+      )}
     </>
   );
   return (
     <div>
-      <div className="navbar bg-base-500">
+      <div className="navbar bg-base-500 sticky top-0 z-20">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -45,22 +58,35 @@ const Navbar = () => {
             </ul>
           </div>
           <div>
-           <Link to="/" >
-                <img className='w-8 mx-1 mt-2' src={logo} alt="" />
-                
-                
+            <Link to="/">
+              <img className="w-8 mx-1 mt-2" src={logo} alt="" />
             </Link>
-           </div>
-            <Link to="/" className="  text-xl">
-               
-                <h2 className='font-bold '>-Language</h2>
-            </Link>
+          </div>
+          <Link to="/" className="  text-xl">
+            <h2 className="font-bold ">-Language</h2>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          {user ? (
+            <Link onClick={handleLogOut} className="btn mx-3">
+              Log Out
+            </Link>
+          ) : (
+            <Link to="/login" className="btn">
+              Login
+            </Link>
+          )}
+          {user && (
+            <img
+              id="img"
+              alt=""
+              className="w-12 h-12 border rounded-full dark:bg-gray-500 dark:border-gray-700"
+              src={user.photoURL}
+            />
+          )}
         </div>
       </div>
     </div>
