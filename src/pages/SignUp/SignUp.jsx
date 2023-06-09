@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import login from "../../assets/login-animate.gif";
 import { Link } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../SocialLogin/SocialLogin";
@@ -43,7 +42,7 @@ const SignUp = () => {
 
                 updateUserProfile(data.name, imgURL)
                     .then(() => {
-                        const saveUser = { name: data.name, email: data.email }
+                        const saveUser = { name: data.name, email: data.email, role:'student' }
                         fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: {
@@ -72,47 +71,17 @@ const SignUp = () => {
                     .catch(error => console.log(error))
             })
 
-            // createNewUser(data.email, data.password)
-            //   .then((result) => {
-            //     updateUserProfile(data.name, imgURL)
-            //       .then(() => {
-            //         Swal.fire({
-            //           position: "top-center",
-            //           icon: "success",
-            //           title: "Register Successfully",
-            //           showConfirmButton: false,
-            //           timer: 1500,
-            //         });
-            //       })
-            //       .catch((err) => {
-            //         console.log(err.message);
-            //       });
-            //   })
-            //   .catch((err) => {
-            //     console.log(err.message);
-            //   });
+
+
+
+            
+           
           }
 
         });
     };
 
 
-  // const handleGoogleSignIn = () => {
-  //   signInWithGoogle()
-  //     .then((result) => {
-  //       console.log(result.user);
-  //       Swal.fire({
-  //         position: "top-center",
-  //         icon: "success",
-  //         title: "Login Successfully",
-  //         showConfirmButton: false,
-  //         timer: 1500,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-  // };
 
   return (
     <div className="flex flex-col md:flex-row max-w-3xl mx-auto">
