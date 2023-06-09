@@ -1,11 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 const AddClass = () => {
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+  
   const {
     register,
     handleSubmit,
@@ -13,7 +15,7 @@ const AddClass = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+   
     // Add your logic to handle form submission here
 
     const image =data.classImage[0];
@@ -28,13 +30,34 @@ const AddClass = () => {
         .then((imgResponse) => {
           if (imgResponse.success) {
             const imgURL = imgResponse.data.display_url;
-      console.log(imgURL);
+            const {availableSeats, className, instructorEmail, instructorName,price} = data;
+            const newItem = {availableSeats, className, instructorEmail, instructorName, price: parseFloat(price), image:imgURL, enroll: 0,
+              status: 'pending',
+              feedback: ''}
+            fetch('http://localhost:5000/class', {
+              method: 'POST',
+              headers: {
+                  'content-type': 'application/json'
+              },
+              body: JSON.stringify(newItem)
+          })
+              .then(res => res.json())
+              .then(data => {
+              
+                Swal.fire({
+                  position: 'top-center',
+                  icon: 'success',
+                  title: 'Add Class successfully.',
+                  showConfirmButton: false,
+                  timer: 1500
+              });
+              })
           }
 
         });
     };
   const {user}=useAuth();
-  console.log(user);
+  
 
   return (
 <div className='md:w-11/12 md:mx-auto'>
@@ -71,14 +94,12 @@ const AddClass = () => {
         )}
       </div>
 
-      <div className="w-full md:w-1/2 px-4 mb-4">
+      {/* <div className="w-full md:w-1/2 px-4 mb-4">
         <label htmlFor="instructorName" className="block mb-2 font-bold">
           Instructor Name
         </label>
         <input
-          {...register('instructorName', {
-            required: true,
-          })}
+          {...register('instructorName')}
           name='instructorName'
           value={user?.displayName}
           type="text"
@@ -93,13 +114,7 @@ const AddClass = () => {
           Instructor Email
         </label>
         <input
-          {...register('instructorEmail', {
-            required: 'Instructor Email is required',
-            pattern: {
-              value: /\S+@\S+\.\S+/,
-              message: 'Invalid email address',
-            },
-          })}
+          {...register('instructorEmail')}
           name='instructorEmail'
           value={user?.email}
           type="email"
@@ -107,7 +122,38 @@ const AddClass = () => {
           className="w-full px-3 py-2 border border-gray-300 rounded-md"
         />
        
-      </div>
+      </div> */}
+
+<div className="w-full md:w-1/2 px-4 mb-4">
+  <label htmlFor="instructorName" className="block mb-2 font-bold">
+    Instructor Name
+  </label>
+  <input
+    {...register('instructorName', { required: true })}
+    name="instructorName"
+    value={user?.displayName}
+    type="text"
+    id="instructorName"
+    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+    required
+  />
+</div>
+
+<div className="w-full md:w-1/2 px-4 mb-4">
+  <label htmlFor="instructorEmail" className="block mb-2 font-bold">
+    Instructor Email
+  </label>
+  <input
+    {...register('instructorEmail', { required: true })}
+    name="instructorEmail"
+    value={user?.email}
+    type="email"
+    id="instructorEmail"
+    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+    required
+  />
+</div>
+
 
       <div className="w-full md:w-1/2 px-4 mb-4">
         <label htmlFor="availableSeats" className="block mb-2 font-bold">

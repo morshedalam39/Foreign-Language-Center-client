@@ -15,6 +15,7 @@ import MyClass from "../pages/Dashboard/MyClass/MyClass";
 import SelectedClasses from "../pages/Dashboard/SelectedClasses/SelectedClasses";
 import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import UpdateMyClass from "../pages/Dashboard/MyClass/UpdateMyClass";
 
   const router = createBrowserRouter([
     {
@@ -62,6 +63,11 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
         {
           path: 'myClass', 
           element:<MyClass></MyClass>
+        },
+        {
+          path: 'updateMyClass/:id', 
+          element: <UpdateMyClass></UpdateMyClass>,
+          loader :({params})=> fetch(`http://localhost:5000/classSingle/${params.id}`)
         },
         {
           path: 'selectedClasses', 

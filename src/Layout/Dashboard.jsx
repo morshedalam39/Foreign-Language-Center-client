@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from '../assets/logo.png'
 import SetRole from "../hooks/SetRole";
+import { FaUtensils } from "react-icons/fa";
 
 const Dashboard = () => {
   const admin =<>
@@ -14,7 +15,7 @@ const Dashboard = () => {
   </>
   const instractor =<>
               <li className="mt-10">
-              <Link to="/dashboard/addClass">Add Class</Link>
+              <Link to="/dashboard/addClass"><FaUtensils></FaUtensils> Add Class</Link>
             </li>
             <li>
               <Link to="/dashboard/myClass">My Class</Link>
@@ -32,15 +33,17 @@ const Dashboard = () => {
             </li>
   </>
   const {data, refetch, isLoading}=SetRole()
-  console.log(data);
+
   return (
     <>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
-          
+        <div className="drawer-content overflow-x-auto">
+        
           {/* Page content here */}
+          <div className="mt-10">
           <Outlet></Outlet>
+          </div>
           <label
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden"
@@ -56,6 +59,7 @@ const Dashboard = () => {
             <img className="w-8" src={logo} alt="" />
             <h1 className="text-xl font-bold">-Language</h1>
           </div>
+          
             {/* Sidebar content here */}
             {isLoading? <></>:data?.role ==='student'&& student}
             {isLoading? <></>:data?.role ==='instractor'&& instractor}
