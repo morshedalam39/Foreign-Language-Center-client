@@ -2,14 +2,19 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 import login from '../../assets/login-animate.gif'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
-    const{signInWithGoogle,  signIn}=useAuth();
+    const{  signIn}=useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
+
   const {
     register,
     handleSubmit,
@@ -31,6 +36,7 @@ const Login = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          navigate(from, { replace: true });
       })
       .catch(err => {
         console.log(err.message)
@@ -38,25 +44,6 @@ const Login = () => {
   };
 
 
-  // const handleGoogleSignIn = () => {
-  //   signInWithGoogle()
-  //     .then(result => {
-  //       console.log(result.user)
-  //       Swal.fire({
-  //           position: "top-center",
-  //           icon: "success",
-  //           title: "Login Successfully",
-  //           showConfirmButton: false,
-  //           timer: 1500,
-  //         });
-       
-  //     })
-  //     .catch(err => {
-       
-  //       console.log(err.message)
-        
-  //     })
-  // }
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -117,14 +104,7 @@ const Login = () => {
 
           <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded">Login</button>
         </form>
-        {/* <div
-         onClick={handleGoogleSignIn}
-          className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
-        >
-          <FaGoogle size={32} />
 
-          <p>Continue with Google</p>
-        </div> */}
         <SocialLogin></SocialLogin>
         <p className='px-6 text-sm text-center text-gray-400'>
           Don't have an account yet?{' '}

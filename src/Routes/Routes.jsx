@@ -14,8 +14,10 @@ import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyClass from "../pages/Dashboard/MyClass/MyClass";
 import SelectedClasses from "../pages/Dashboard/SelectedClasses/SelectedClasses";
 import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
-import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import UpdateMyClass from "../pages/Dashboard/MyClass/UpdateMyClass";
+import Payment from "../pages/Dashboard/Payment/Payment";
+
+
 
   const router = createBrowserRouter([
     {
@@ -77,9 +79,10 @@ import UpdateMyClass from "../pages/Dashboard/MyClass/UpdateMyClass";
           path: 'enrolledClasses', 
           element:<EnrolledClasses></EnrolledClasses>
         },
+
         {
-          path: 'paymentHistory', 
-          element:<PaymentHistory></PaymentHistory>
+          path: 'payment', 
+          element:<Payment></Payment>
         },
       ]
     }

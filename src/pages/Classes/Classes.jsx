@@ -9,13 +9,13 @@ const Classes = () => {
   const {data}=SetRole()
   const {user}=useAuth()
   const navigate= useNavigate()
-  console.log(data);
+  // console.log(data);
   useEffect(() => {
     fetch("http://localhost:5000/approveClass")
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);
-  console.log(classes);
+  // console.log(classes);
   const handelSelect = cls =>{
 
     if(!user){

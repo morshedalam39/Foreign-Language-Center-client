@@ -33,6 +33,7 @@ const Dashboard = () => {
             </li>
   </>
   const {data, refetch, isLoading}=SetRole()
+  console.log(data);
 
   return (
     <>

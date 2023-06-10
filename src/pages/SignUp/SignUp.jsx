@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import login from "../../assets/login-animate.gif";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../SocialLogin/SocialLogin";
@@ -9,30 +9,37 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 const SignUp = () => {
+  const navigate = useNavigate();
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const {  createNewUser, updateUserProfile } =useAuth()
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
     const onSubmit = (data) => {
-      console.log(data);
+
       
       const image = data.image[0];
       const formData = new FormData();
       formData.append("image", image);
+      // formData.append("image", data.image[0]);
+      // console.log(formData);
 
       fetch(img_hosting_url, {
         method: "POST",
-        body: formData,
+        body:formData
+        // body: JSON.stringify({image:data.image[0]}),
+        // mode:'no-cors'
+        
       })
         .then((res) => res.json())
         .then((imgResponse) => {
           if (imgResponse.success) {
             const imgURL = imgResponse.data.display_url;
-
+// console.log(imgURl);
 
             createNewUser(data.email, data.password)
             .then(result => {
@@ -42,7 +49,7 @@ const SignUp = () => {
 
                 updateUserProfile(data.name, imgURL)
                     .then(() => {
-                        const saveUser = { name: data.name, email: data.email, role:'student' }
+                        const saveUser = { name: data.name, email: data.email, role:'student', image:imgURL }
                         fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: {
@@ -53,7 +60,7 @@ const SignUp = () => {
                             .then(res => res.json())
                             .then(data => {
                                 if (data.insertedId) {
-                                    // reset();
+                                    reset();
                                     Swal.fire({
                                         position: 'top-center',
                                         icon: 'success',
@@ -61,7 +68,7 @@ const SignUp = () => {
                                         showConfirmButton: false,
                                         timer: 1500
                                     });
-                                    // navigate('/');
+                                    navigate('/');
                                 }
                             })
 
