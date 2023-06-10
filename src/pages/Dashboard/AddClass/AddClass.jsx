@@ -31,7 +31,7 @@ const AddClass = () => {
           if (imgResponse.success) {
             const imgURL = imgResponse.data.display_url;
             const {availableSeats, className, instructorEmail, instructorName,price} = data;
-            const newItem = {availableSeats, className, instructorEmail, instructorName, price: parseFloat(price), image:imgURL, enroll: 0,
+            const newItem = { availableSeats: parseFloat(availableSeats) , className, instructorEmail, instructorName, price: parseFloat(price), image:imgURL, enroll: 0,
               status: 'pending',
               feedback: ''}
             fetch('http://localhost:5000/class', {

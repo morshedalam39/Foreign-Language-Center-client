@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import SetRole from "../../hooks/SetRole";
 
 const Classes = () => {
   const [classes, setClasses] = useState();
+  const {data}=SetRole()
+  console.log(data);
   useEffect(() => {
     fetch("http://localhost:5000/approveClass")
       .then((res) => res.json())
@@ -11,22 +14,23 @@ const Classes = () => {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3  gap-6">
       {classes?.map((cls) => (
-        <div key={cls._id} className="card w-96 bg-base-100 shadow-xl">
+        <div key={cls._id} className={`card w-full ${+cls?.availableSeats === 0 ? 'bg-red-400' :  'bg-base-100' } shadow-xl`}>
           <figure>
-            <img
-              src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+            <img className="h-60 w-full"
+              src={cls.image}
               alt="Shoes"
             />
           </figure>
           <div className="card-body">
             <h2 className="card-title">
-              Shoes!
-              <div className="badge badge-secondary">NEW</div>
+             Name:{cls.className}
             </h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <p className=" font-medium text-base">Instructor: {cls.instructorName}</p>
+            <p className=" font-medium text-base">Seats: {cls.availableSeats}</p>
+            <p className=" font-medium text-base">Course fee: ${cls.price}</p>
             <div className="card-actions justify-end">
-              <div className="badge badge-outline">Fashion</div>
-              <div className="badge badge-outline">Products</div>
+             
+              <button  className="btn btn-warning btn-sm hover:bg-amber-600" disabled={data?.role === "instractor" || data.role === "admin" || +cls?.availableSeats === 0} >Select</button>
             </div>
           </div>
         </div>
