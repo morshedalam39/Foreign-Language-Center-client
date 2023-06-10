@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import SetRole from "../../hooks/SetRole";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Classes = () => {
   const [classes, setClasses] = useState();
   const {data}=SetRole()
+  const {user}=useAuth()
+  const navigate= useNavigate()
   console.log(data);
   useEffect(() => {
     fetch("http://localhost:5000/approveClass")
@@ -11,6 +16,58 @@ const Classes = () => {
       .then((data) => setClasses(data));
   }, []);
   console.log(classes);
+  const handelSelect = cls =>{
+
+    if(!user){
+      Swal.fire({
+        title: 'Login Please',
+        text: "If You want to selected Class you need to Login",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Okay'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/login')
+        }
+      })
+    }
+
+    const classData={
+
+      classId: cls._id,
+      className: cls.className,
+      classImage: cls.image,
+      studentName: user?.displayName,
+      studentEmail: user?.email,
+      instructorEmail: cls.instructorEmail,
+      availableSeats: cls.availableSeats,
+      price: parseFloat(cls.price) ,
+      payment: false
+    }
+// console.log(classData);
+
+fetch('http://localhost:5000/selectedClass', {
+  method: 'POST',
+  headers: {
+      'content-type': 'application/json'
+  },
+  body: JSON.stringify(classData)
+})
+  .then(res => res.json())
+  .then(data => {
+  
+    Swal.fire({
+      position: 'top-center',
+      icon: 'success',
+      title: 'Selected Class Successfully.',
+      showConfirmButton: false,
+      timer: 1500
+  });
+  })
+
+  }
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3  gap-6">
       {classes?.map((cls) => (
@@ -30,7 +87,7 @@ const Classes = () => {
             <p className=" font-medium text-base">Course fee: ${cls.price}</p>
             <div className="card-actions justify-end">
              
-              <button  className="btn btn-warning btn-sm hover:bg-amber-600" disabled={data?.role === "instractor" || data.role === "admin" || +cls?.availableSeats === 0} >Select</button>
+              <button onClick={()=>handelSelect(cls)} className="btn btn-warning btn-sm hover:bg-amber-600" disabled={data?.role === "instractor" || data.role === "admin" || +cls?.availableSeats === 0} >Select</button>
             </div>
           </div>
         </div>
