@@ -21,9 +21,9 @@ const ManageUsers = () => {
           }).then((result) => {
             if (result.isConfirmed) {
               fetch(`http://localhost:5000/users/${u._id}`,{
-                method:'PATCH',
+                method:'PUT',
                 headers:{'content-type' : 'application/json'},
-                body: JSON.stringify({role}),
+                body: JSON.stringify({role , enroll:0}),
               })
               .then(res => res.json())
               .then(data=>{
@@ -44,15 +44,17 @@ const ManageUsers = () => {
 
     return (
         <div className='w-11/12 mx-auto'>
-            <h3 className="text-3xl text-center font-semibold my-4">Total Users: {data.length}</h3>
-            <div className="overflow-x-auto">
+            <h3 className="text-4xl text-center font-semibold my-4">Total Users: {data.length}</h3>
+            <hr className="w-44 mt-2 border-[3px] mx-auto border-stone-600" />
+            <div className="overflow-x-auto mt-8">
                 <table className="table table-zebra w-full">
                     {/* head */}
-                    <thead>
+                    <thead className="bg-stone-600 text-white">
                         <tr>
                             <th className='font-bold text-base'>#</th>
                             <th className='font-bold text-base'>Name</th>
                             <th className='font-bold text-base'>Email</th>
+                            <th className='font-bold text-base'>Role</th>
                             <th className='font-bold text-base'>Role</th>
                         </tr>
                     </thead>

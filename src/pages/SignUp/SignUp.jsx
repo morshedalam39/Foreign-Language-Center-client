@@ -4,12 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import { useState } from "react";
 
 
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 const SignUp = () => {
   const navigate = useNavigate();
+  const [error , setError]=useState()
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const {  createNewUser, updateUserProfile } =useAuth()
   const {
@@ -75,7 +77,9 @@ const SignUp = () => {
 
 
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => {
+                      setError(error);
+                      console.log(error)})
             })
 
 
@@ -203,22 +207,15 @@ const SignUp = () => {
               <span className="text-red-500">This field is required</span>
             )}
           </div>
-
+          <p className="text-red-500">{error}</p>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+            className="w-full text-white py-2 px-4 rounded btn btn-warning btn-sm  hover:bg-amber-600 "
           >
             Register
           </button>
         </form>
-        {/* <div
-          onClick={handleGoogleSignIn}
-          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
-        >
-          <FaGoogle size={32} />
-
-          <p>Continue with Google</p>
-        </div> */}
+  
         <SocialLogin></SocialLogin>
         <p className="px-6 text-sm text-center text-gray-400">
           Already have an account?{" "}

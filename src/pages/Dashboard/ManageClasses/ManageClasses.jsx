@@ -85,10 +85,12 @@ const ManageClasses = () => {
         
     }
     return (
-        <div className='w-11\12 mx-auto'>
-         <div className="overflow-x-auto">
+        <div className='w-10\12 mx-auto'>
+            <h1 className="font-bold text-4xl text-center">Manage  Classes</h1>
+      <hr className="w-28 mt-2 border-[3px] mx-auto border-stone-600" />
+         <div className="overflow-x-auto ml-5 mt-8">
   <table className="table ">
-    <thead>
+    <thead className="bg-stone-600 text-white">
         
       <tr>
         <th>#</th> 

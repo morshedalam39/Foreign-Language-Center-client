@@ -5,10 +5,15 @@ import Footer from '../pages/Shared/Footer/Footer';
 
 const Main = () => {
     return (
-        <div>
+        <div >
             <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
+            
+           <div className='pt-[64px]'>
+           <Outlet></Outlet>
+           <Footer></Footer>
+           </div>
+            
+            
         </div>
     );
 };

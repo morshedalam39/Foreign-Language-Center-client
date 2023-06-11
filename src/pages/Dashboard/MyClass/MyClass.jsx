@@ -15,11 +15,13 @@ const MyClass = () => {
   }
   return (
     <div className="w-11/12 mx-auto">
-      <div className="overflow-x-auto">
+      <h1 className="font-bold text-4xl text-center">My  Classes</h1>
+      <hr className="w-28 mt-2 border-[3px] mx-auto border-stone-600" />
+      <div className="overflow-x-auto mt-8">
         <table className="table table-xs table-pin-rows table-pin-cols">
-          <thead>
-            <tr>
-              <td>#</td>
+          <thead >
+            <tr className="bg-stone-600 text-white rounded-xl">
+              <td>#</td >
               <td>Class Name</td>
               <td>Status</td>
               <td>Total Enroled</td>
@@ -34,7 +36,7 @@ const MyClass = () => {
               <td>{cls.className}</td>
               <td><button className="btn btn-warning btn-xs">{cls.status}</button></td>
               <td>{cls.enroll}</td>
-              <td><button onClick={()=>feedback(cls.feedback.length === 0 ? "Admin has not sent any feedback" : cls.feedback)} className="btn btn-info  btn-sm">Feedback</button></td>
+              <td><button onClick={()=>feedback(cls.feedback.length === 0 ? "Admin has not sent any feedback" : cls.feedback)} className=" btn btn-success  btn-sm">Feedback</button></td>
               <td>
                 <Link to={`/dashboard/updateMyClass/${cls._id}`}>
                 <button  className="btn btn-warning btn-sm">Update</button>

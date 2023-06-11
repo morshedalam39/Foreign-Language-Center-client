@@ -61,8 +61,9 @@ const AddClass = () => {
 
   return (
 <div className='md:w-11/12 md:mx-auto'>
-    <h1 className='text-center font-bold text-lg'>Please Add Class</h1>
-<form onSubmit={handleSubmit(onSubmit)} className="w-full mx-auto mt-10">
+    <h1 className='text-center font-bold text-4xl'>Please Add Class</h1>
+    <hr className="w-40 mt-2 border-[3px] mx-auto border-stone-600" />
+<form onSubmit={handleSubmit(onSubmit)} className="w-full mx-auto mt-8">
     <div className="flex flex-wrap -mx-4">
       <div className="w-full md:w-1/2 px-4 mb-4">
         <label htmlFor="className" className="block mb-2 font-bold">
@@ -94,35 +95,7 @@ const AddClass = () => {
         )}
       </div>
 
-      {/* <div className="w-full md:w-1/2 px-4 mb-4">
-        <label htmlFor="instructorName" className="block mb-2 font-bold">
-          Instructor Name
-        </label>
-        <input
-          {...register('instructorName')}
-          name='instructorName'
-          value={user?.displayName}
-          type="text"
-          id="instructorName"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
-        />
-       
-      </div>
 
-      <div className="w-full md:w-1/2 px-4 mb-4">
-        <label htmlFor="instructorEmail" className="block mb-2 font-bold">
-          Instructor Email
-        </label>
-        <input
-          {...register('instructorEmail')}
-          name='instructorEmail'
-          value={user?.email}
-          type="email"
-          id="instructorEmail"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
-        />
-       
-      </div> */}
 
 <div className="w-full md:w-1/2 px-4 mb-4">
   <label htmlFor="instructorName" className="block mb-2 font-bold">
@@ -207,7 +180,7 @@ const AddClass = () => {
     <div className='text-center mt-6'>
       <button
         type="submit"
-        className="px-4 py-2 font-bold text-white  bg-blue-500 rounded hover:bg-blue-600"
+        className="px-4 py-2 font-bold  rounded btn btn-warning text-white hover:bg-amber-600 "
       >
         Add Class
       </button>

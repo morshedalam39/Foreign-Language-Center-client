@@ -34,46 +34,50 @@ const Classes = () => {
       })
     }
 
-    const classData={
+    else{
+      const classData={
 
-      classId: cls._id,
-      className: cls.className,
-      classImage: cls.image,
-      studentName: user?.displayName,
-      studentEmail: user?.email,
-      instructorEmail: cls.instructorEmail,
-      availableSeats: cls.availableSeats,
-      price: parseFloat(cls.price) ,
-      payment: false
-    }
-// console.log(classData);
-
-fetch('http://localhost:5000/selectedClass', {
-  method: 'POST',
-  headers: {
-      'content-type': 'application/json'
-  },
-  body: JSON.stringify(classData)
-})
-  .then(res => res.json())
-  .then(data => {
+        classId: cls._id,
+        className: cls.className,
+        classImage: cls.image,
+        studentName: user?.displayName,
+        studentEmail: user?.email,
+        instructorEmail: cls.instructorEmail,
+        availableSeats: cls.availableSeats,
+        price: parseFloat(cls.price) ,
+        payment: false
+      }
+  // console.log(classData);
   
-    Swal.fire({
-      position: 'top-center',
-      icon: 'success',
-      title: 'Selected Class Successfully.',
-      showConfirmButton: false,
-      timer: 1500
-  });
+  fetch('http://localhost:5000/selectedClass', {
+    method: 'POST',
+    headers: {
+        'content-type': 'application/json'
+    },
+    body: JSON.stringify(classData)
   })
+    .then(res => res.json())
+    .then(data => {
+    
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'Selected Class Successfully.',
+        showConfirmButton: false,
+        timer: 1500
+    });
+    })
+    }
+
+    
 
   }
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3  gap-6">
+    <div className="grid md:grid-cols-2 lg:grid-cols-3  gap-6 mt-6">
       {classes?.map((cls) => (
         <div key={cls._id} className={`card w-full ${+cls?.availableSeats === 0 ? 'bg-red-400' :  'bg-base-100' } shadow-xl`}>
           <figure>
-            <img className="h-60 w-full"
+            <img className="h-60 w-full "
               src={cls.image}
               alt="Shoes"
             />

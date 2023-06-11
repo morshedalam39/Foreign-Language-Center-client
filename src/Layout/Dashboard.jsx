@@ -2,34 +2,34 @@ import React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from '../assets/logo.png'
 import SetRole from "../hooks/SetRole";
-import { FaUtensils } from "react-icons/fa";
+import { FaBookDead, FaBookReader, FaBookmark, FaHome, FaSave, FaUsers, FaUtensils, FaWallet } from "react-icons/fa";
 
 const Dashboard = () => {
   const admin =<>
               <li className="mt-10">
-              <Link to="/dashboard/manageClasses">Manage Classes</Link>
+              <Link to="/dashboard/manageClasses"><FaWallet></FaWallet> Manage Classes</Link>
             </li>
             <li>
-              <Link to="/dashboard/manageUsers">Manage Users</Link>
+              <Link to="/dashboard/manageUsers"> <FaUsers></FaUsers> Manage Users</Link>
             </li>
   </>
   const instractor =<>
               <li className="mt-10">
-              <Link to="/dashboard/addClass"><FaUtensils></FaUtensils> Add Class</Link>
+              <Link to="/dashboard/addClass"><FaSave></FaSave> Add Class</Link>
             </li>
             <li>
-              <Link to="/dashboard/myClass">My Class</Link>
+              <Link to="/dashboard/myClass"><FaBookReader></FaBookReader> My Class</Link>
             </li>
   </>
   const student =<>
               <li className="mt-10">
-              <Link to="/dashboard/selectedClasses">My Selected Classes</Link>
+              <Link to="/dashboard/selectedClasses"><FaBookmark></FaBookmark> My Selected Classes</Link>
             </li>
             <li>
-              <Link to="/dashboard/enrolledClasses">My Enrolled Classes</Link>
+              <Link to="/dashboard/enrolledClasses"><FaBookDead></FaBookDead> My Enrolled Classes</Link>
             </li>
             <li>
-              <Link to="/dashboard/paymentHistory">My Payment History</Link>
+              <Link to="/dashboard/paymentHistory"><FaWallet></FaWallet> My Payment History</Link>
             </li>
   </>
   const {data, refetch, isLoading}=SetRole()
@@ -55,7 +55,7 @@ const Dashboard = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
          
-          <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+          <ul className="menu p-4 w-80 h-full bg-stone-600 text-white text-base-content">
           <div className="flex items-center">
             <img className="w-8" src={logo} alt="" />
             <h1 className="text-xl font-bold">-Language</h1>
@@ -69,7 +69,7 @@ const Dashboard = () => {
 
             <div className="divider"></div>
             <li>
-              <Link to="/"> Home</Link>{" "}
+              <Link to="/"><FaHome></FaHome> Home</Link>{" "}
             </li>
           </ul>
         </div>

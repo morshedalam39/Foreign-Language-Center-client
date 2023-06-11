@@ -12,6 +12,7 @@ const Login = () => {
     const{  signIn}=useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const[error, setError]=useState()
 
     const from = location.state?.from?.pathname || "/";
 
@@ -40,6 +41,7 @@ const Login = () => {
       })
       .catch(err => {
         console.log(err.message)
+        setError(error.message);
       })
   };
 
@@ -100,9 +102,9 @@ const Login = () => {
             {errors.password && <span className="text-red-500">This field is required</span>}
           </div>
 
-        
+          <p className="text-red-500">{error}</p>
 
-          <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded">Login</button>
+          <button type="submit" className="w-full btn btn-warning btn-sm  hover:bg-amber-600  text-white py-2 px-4 rounded">Login</button>
         </form>
 
         <SocialLogin></SocialLogin>
