@@ -16,6 +16,8 @@ import SelectedClasses from "../pages/Dashboard/SelectedClasses/SelectedClasses"
 import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
 import UpdateMyClass from "../pages/Dashboard/MyClass/UpdateMyClass";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import Error from "../pages/Error/Error";
+
 
 
 
@@ -81,11 +83,17 @@ import Payment from "../pages/Dashboard/Payment/Payment";
         },
 
         {
-          path: 'payment', 
-          element:<Payment></Payment>
+          path: 'payment/:id', 
+          element:<Payment></Payment>,
+          loader :({params})=> fetch(`http://localhost:5000/singleSelect/${params.id}`)
         },
       ]
-    }
+    },
+
+{
+  path:'*',
+  element:<Error></Error>
+}
   ]);
 
   export default router;

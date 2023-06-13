@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const MyClass = () => {
   const { data } = useClass();
 
+
   const feedback = cls =>{
     Swal.fire(
         'FeedBack!',
@@ -34,7 +35,7 @@ const MyClass = () => {
                 <tr key={cls._id}>
               <td>{index + 1}</td>
               <td>{cls.className}</td>
-              <td><button className="btn btn-warning btn-xs">{cls.status}</button></td>
+              <td><button className={`btn  btn-xs ${cls.status === "denied" && "btn-error"} ${cls.status === "approve" && "btn-success"} ${cls.status === "pending" && "btn-warning"}`}>{cls.status}</button></td>
               <td>{cls.enroll}</td>
               <td><button onClick={()=>feedback(cls.feedback.length === 0 ? "Admin has not sent any feedback" : cls.feedback)} className=" btn btn-success  btn-sm">Feedback</button></td>
               <td>

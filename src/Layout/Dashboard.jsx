@@ -33,7 +33,7 @@ const Dashboard = () => {
             </li>
   </>
   const {data, refetch, isLoading}=SetRole()
-  console.log(data);
+
 
   return (
     <>
@@ -60,6 +60,7 @@ const Dashboard = () => {
             <img className="w-8" src={logo} alt="" />
             <h1 className="text-xl font-bold">-Language</h1>
           </div>
+          <hr className="w-full mt-2 border-1 mx-auto border-black" />
           
             {/* Sidebar content here */}
             {isLoading? <></>:data?.role ==='student'&& student}
@@ -67,7 +68,7 @@ const Dashboard = () => {
             {isLoading? <></>:data?.role ==='admin'&& admin}
 
 
-            <div className="divider"></div>
+            <hr className="w-full mt-2 border-1 mx-auto border-black" />
             <li>
               <Link to="/"><FaHome></FaHome> Home</Link>{" "}
             </li>

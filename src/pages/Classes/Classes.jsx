@@ -45,9 +45,10 @@ const Classes = () => {
         instructorEmail: cls.instructorEmail,
         availableSeats: cls.availableSeats,
         price: parseFloat(cls.price) ,
-        payment: false
+        payment: false,
+        enroll: cls.enroll
       }
-  // console.log(classData);
+
   
   fetch('http://localhost:5000/selectedClass', {
     method: 'POST',
@@ -73,15 +74,16 @@ const Classes = () => {
 
   }
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3  gap-6 mt-6">
+    <div className="grid md:grid-cols-2 lg:grid-cols-3  gap-6 mt-6 mb-10">
       {classes?.map((cls) => (
-        <div key={cls._id} className={`card w-full ${+cls?.availableSeats === 0 ? 'bg-red-400' :  'bg-base-100' } shadow-xl`}>
+        <div key={cls._id} className={`card w-full  ${+cls?.availableSeats === 0 ? 'bg-red-400' :  'bg-gray-200' } shadow-xl`}>
           <figure>
-            <img className="h-60 w-full "
-              src={cls.image}
-              alt="Shoes"
-            />
-          </figure>
+  <img
+    className="h-60 w-full transition-transform duration-300 transform hover:scale-150"
+    src={cls.image}
+    alt="Shoes"
+  />
+</figure>
           <div className="card-body">
             <h2 className="card-title">
              Name:{cls.className}
