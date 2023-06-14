@@ -18,6 +18,9 @@ import UpdateMyClass from "../pages/Dashboard/MyClass/UpdateMyClass";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import Error from "../pages/Error/Error";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import PrivateAdmin from "./Privateadmin";
+import PrivateInstractor from "./PrivateAdmin copy";
+import PrivateStudent from "./PrivateStudent";
 
 
 
@@ -55,42 +58,42 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
       children: [
         {
           path: 'manageClasses', 
-          element:<ManageClasses></ManageClasses> 
+          element:<PrivateAdmin><ManageClasses></ManageClasses> </PrivateAdmin>
         },
         {
           path: 'manageUsers', 
-          element:<ManageUsers></ManageUsers>
+          element:<PrivateAdmin><ManageUsers></ManageUsers></PrivateAdmin>
         },
         {
           path: 'addClass', 
-          element:<AddClass></AddClass>
+          element:<PrivateInstractor><AddClass></AddClass></PrivateInstractor>
         },
         {
           path: 'myClass', 
-          element:<MyClass></MyClass>
+          element:<PrivateInstractor><MyClass></MyClass></PrivateInstractor>
         },
         {
           path: 'updateMyClass/:id', 
-          element: <UpdateMyClass></UpdateMyClass>,
+          element: <PrivateInstractor><UpdateMyClass></UpdateMyClass></PrivateInstractor>,
           loader :({params})=> fetch(`http://localhost:5000/classSingle/${params.id}`)
         },
         {
           path: 'selectedClasses', 
-          element:<SelectedClasses></SelectedClasses>
+          element:<PrivateStudent><SelectedClasses></SelectedClasses></PrivateStudent>
         },
         {
           path: 'enrolledClasses', 
-          element:<EnrolledClasses></EnrolledClasses>
+          element:<PrivateStudent><EnrolledClasses></EnrolledClasses></PrivateStudent>
         },
 
         {
           path: 'payment/:id', 
-          element:<Payment></Payment>,
+          element:<PrivateStudent><Payment></Payment></PrivateStudent>,
           loader :({params})=> fetch(`http://localhost:5000/singleSelect/${params.id}`)
         },
         {
           path: 'paymentHistory', 
-          element:<PaymentHistory></PaymentHistory>
+          element:<PrivateStudent><PaymentHistory></PaymentHistory></PrivateStudent>
         },
       ]
     },

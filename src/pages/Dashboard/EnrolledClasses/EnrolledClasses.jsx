@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import useAuth from '../../../hooks/useAuth';
 
 const EnrolledClasses = () => {
     const [enrolled , setEnrolled]=useState()
+    const {user}=useAuth();
     useEffect(() => {
-        fetch("http://localhost:5000/enrolledClass")
+        fetch(`http://localhost:5000/enrolledClass/${user.email}`)
           .then((res) => res.json())
           .then((data) => setEnrolled(data));
       }, []);

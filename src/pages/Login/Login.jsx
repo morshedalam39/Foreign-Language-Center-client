@@ -7,12 +7,14 @@ import { FaGoogle } from 'react-icons/fa';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import useAxiosSecure from '../../hooks/axiosSecure';
 
 const Login = () => {
     const{  signIn}=useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const[error, setError]=useState()
+    const axios= useAxiosSecure()
 
     const from = location.state?.from?.pathname || "/";
 
@@ -30,7 +32,15 @@ const Login = () => {
     signIn(data.email, data.password)
       .then(result => {
         console.log(result.user)
-        Swal.fire({
+         axios
+          .post(`http://localhost:5000/jwt`, { email: result.user.email })
+          .then((response) => {
+            console.log(response);
+            
+            localStorage.setItem("axcess_token", response.data.token)
+          
+        
+          Swal.fire({
             position: "top-center",
             icon: "success",
             title: "Login Successfully",
@@ -38,6 +48,9 @@ const Login = () => {
             timer: 1500,
           });
           navigate(from, { replace: true });
+        })
+
+       
       })
       .catch(err => {
         console.log(err.message)

@@ -2,9 +2,11 @@ import React from "react";
 import useSelectedClass from "../../../hooks/useSelectedClass";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/axiosSecure";
 
 const SelectedClasses = () => {
   const { data, refetch } = useSelectedClass();
+  const axios= useAxiosSecure()
 
   const handelDelete = (cls) => {
     Swal.fire({
@@ -17,12 +19,9 @@ const SelectedClasses = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/selectedClass/${cls._id}`, {
-          method: "delete",
-        })
-          .then((res) => res.json())
+        axios.delete(`/selectedClass/${cls._id}` )
           .then((data) => {
-            if (data.deletedCount > 0) {
+            if (data.data.deletedCount > 0) {
               refetch();
               Swal.fire({
                 position: "top-center",

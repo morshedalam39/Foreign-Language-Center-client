@@ -3,11 +3,13 @@ import { FaGoogle } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/axiosSecure";
 
 const SocialLogin = () => {
     const {signInWithGoogle } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const axios= useAxiosSecure()
 
     const from = location.state?.from?.pathname || "/";
 
@@ -29,14 +31,19 @@ const SocialLogin = () => {
                 })
                     .then(res => res.json())
                     .then(() => {
-                        Swal.fire({
-                            position: "top-center",
-                            icon: "success",
-                            title: "Login Successfully",
-                            showConfirmButton: false,
-                            timer: 1500,
-                          });
-                        navigate(from, { replace: true });
+                      axios
+                      .post(`http://localhost:5000/jwt`, { email: result.user.email })
+                      .then((response) => {localStorage.setItem("axcess_token", response.data)
+                    
+                      Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: "Login Successfully",
+                        showConfirmButton: false,
+                        timer: 1500,
+                      });
+                      navigate(from, { replace: true });
+                    })
                     })
             })
     }

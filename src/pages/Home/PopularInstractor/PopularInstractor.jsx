@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {  useContext, useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css"
+import { ThemeContext } from "@emotion/react";
 
 const PopularInstractor = () => {
   const [instractor, setInstractor] = useState();
@@ -13,10 +14,10 @@ const PopularInstractor = () => {
   useEffect(() => {
     AOS.init({duration: 2000});
 }, [])
-
+const { theme } = useContext(ThemeContext);
   return (
     <div className="mt-12">
-        <h1 className=" text-4xl font-semibold leading-none text-black text-center">Our Popular Instructor</h1>
+        <h1 className={`text-4xl font-semibold leading-none  text-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Our Popular Instructor</h1>
         <hr className="w-64 mt-2 border-[3px] mx-auto border-stone-600" />
       <div className="grid md:grid-cols-2 lg:grid-cols-3  gap-6 mt-16 ">
         {instractor?.map((i) => (

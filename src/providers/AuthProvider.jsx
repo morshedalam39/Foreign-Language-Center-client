@@ -39,6 +39,7 @@ const AuthProviders = ({ children }) => {
   };
 
   const logOut = () => {
+    localStorage.removeItem('axcess_token')
     return signOut(auth);
   };
 
@@ -52,18 +53,7 @@ const AuthProviders = ({ children }) => {
   // observe auth state change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-
-        await axios
-          .post(`http://localhost:5000/jwt`, { email: currentUser.email })
-          .then((response) => localStorage.setItem("axcess_token", response.data))
-          
-      }
-else {
-        setUser(null);
-        localStorage.removeItem("axcess_token");
-      }
+      setUser(currentUser)
 
       setLoading(false);
     });
