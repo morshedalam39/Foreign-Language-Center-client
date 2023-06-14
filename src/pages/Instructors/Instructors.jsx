@@ -7,7 +7,7 @@ const Instructors = () => {
 //   console.log(user);
 
   useEffect(() => {
-    fetch("http://localhost:5000/instructor")
+    fetch("https://foreign-language-center-client.vercel.app/instructor")
       .then((res) => res.json())
       .then((data) => setInstructor(data));
   }, []);

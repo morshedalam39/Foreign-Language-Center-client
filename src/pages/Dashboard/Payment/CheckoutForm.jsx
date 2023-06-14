@@ -31,7 +31,7 @@ const CheckoutForm = ({ data }) => {
   const axios = useAxiosSecure();
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://foreign-language-center-client.vercel.app/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ price: +price }),

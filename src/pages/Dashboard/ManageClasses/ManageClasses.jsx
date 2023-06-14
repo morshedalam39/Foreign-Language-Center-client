@@ -18,7 +18,7 @@ const ManageClasses = () => {
         })
 
         if (message) {
-            fetch(`http://localhost:5000/singleClass/${p._id}`, {
+            fetch(`https://foreign-language-center-client.vercel.app/singleClass/${p._id}`, {
                 method: 'PUT',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify({ feedback: message })
@@ -40,7 +40,7 @@ const ManageClasses = () => {
     const stateApprove =(p)=>{
         const status={status:"approve"}
 
-        fetch(`http://localhost:5000/singleClass/${p._id}`,
+        fetch(`https://foreign-language-center-client.vercel.app/singleClass/${p._id}`,
         {
             method:'PUT',
             headers:{'content-type' : 'application/json'},
@@ -63,7 +63,7 @@ const ManageClasses = () => {
     }
     const stateReject =(p)=>{
         const status={status:"denied"}
-        fetch(`http://localhost:5000/singleClass/${p._id}`,
+        fetch(`https://foreign-language-center-client.vercel.app/singleClass/${p._id}`,
         {
             method:'PUT',
             headers:{'content-type' : 'application/json'},

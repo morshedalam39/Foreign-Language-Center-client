@@ -11,7 +11,7 @@ const Classes = () => {
   const navigate= useNavigate()
   // console.log(data);
   useEffect(() => {
-    fetch("http://localhost:5000/approveClass")
+    fetch("https://foreign-language-center-client.vercel.app/approveClass")
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);
@@ -50,7 +50,7 @@ const Classes = () => {
       }
 
   
-  fetch('http://localhost:5000/selectedClass', {
+  fetch('https://foreign-language-center-client.vercel.app/selectedClass', {
     method: 'POST',
     headers: {
         'content-type': 'application/json'

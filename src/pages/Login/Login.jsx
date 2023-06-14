@@ -33,7 +33,7 @@ const Login = () => {
       .then(result => {
         console.log(result.user)
          axios
-          .post(`http://localhost:5000/jwt`, { email: result.user.email })
+          .post(`https://foreign-language-center-client.vercel.app/jwt`, { email: result.user.email })
           .then((response) => {
             console.log(response);
             

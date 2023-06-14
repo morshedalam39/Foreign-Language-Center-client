@@ -20,7 +20,7 @@ const ManageUsers = () => {
             confirmButtonText: 'Yes!'
           }).then((result) => {
             if (result.isConfirmed) {
-              fetch(`http://localhost:5000/users/${u._id}`,{
+              fetch(`https://foreign-language-center-client.vercel.app/users/${u._id}`,{
                 method:'PUT',
                 headers:{'content-type' : 'application/json'},
                 body: JSON.stringify({role , enroll:0}),

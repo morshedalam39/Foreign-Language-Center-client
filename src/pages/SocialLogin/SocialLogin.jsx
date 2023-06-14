@@ -22,7 +22,7 @@ const SocialLogin = () => {
  }
 
                 
-                fetch('http://localhost:5000/users', {
+                fetch('https://foreign-language-center-client.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -32,7 +32,7 @@ const SocialLogin = () => {
                     .then(res => res.json())
                     .then(() => {
                       axios
-                      .post(`http://localhost:5000/jwt`, { email: result.user.email })
+                      .post(`https://foreign-language-center-client.vercel.app/jwt`, { email: result.user.email })
                       .then((response) => {localStorage.setItem("axcess_token", response.data)
                     
                       Swal.fire({

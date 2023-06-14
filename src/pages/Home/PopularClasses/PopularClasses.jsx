@@ -12,7 +12,7 @@ const PopularClasses = () => {
 // }, [])
 
   useEffect(() => {
-    fetch("http://localhost:5000/popularClass")
+    fetch("https://foreign-language-center-client.vercel.app/popularClass")
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);

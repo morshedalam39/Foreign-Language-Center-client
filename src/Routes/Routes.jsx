@@ -75,7 +75,7 @@ import PrivateStudent from "./PrivateStudent";
         {
           path: 'updateMyClass/:id', 
           element: <PrivateInstractor><UpdateMyClass></UpdateMyClass></PrivateInstractor>,
-          loader :({params})=> fetch(`http://localhost:5000/classSingle/${params.id}`)
+          loader :({params})=> fetch(`https://foreign-language-center-client.vercel.app/classSingle/${params.id}`)
         },
         {
           path: 'selectedClasses', 
@@ -89,7 +89,7 @@ import PrivateStudent from "./PrivateStudent";
         {
           path: 'payment/:id', 
           element:<PrivateStudent><Payment></Payment></PrivateStudent>,
-          loader :({params})=> fetch(`http://localhost:5000/singleSelect/${params.id}`)
+          loader :({params})=> fetch(`https://foreign-language-center-client.vercel.app/singleSelect/${params.id}`)
         },
         {
           path: 'paymentHistory', 

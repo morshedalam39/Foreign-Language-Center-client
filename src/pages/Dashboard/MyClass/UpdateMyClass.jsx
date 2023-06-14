@@ -17,7 +17,7 @@ const UpdateMyClass = () => {
     console.log(d);
     const {className, availableSeats, price}=d
     const update= {className, availableSeats, price};
-    fetch(`http://localhost:5000/singleClass/${data._id}`,
+    fetch(`https://foreign-language-center-client.vercel.app/singleClass/${data._id}`,
     {
         method:'PUT',
         headers:{'content-type' : 'application/json'},

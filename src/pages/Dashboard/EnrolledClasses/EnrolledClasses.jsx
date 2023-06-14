@@ -5,7 +5,7 @@ const EnrolledClasses = () => {
     const [enrolled , setEnrolled]=useState()
     const {user}=useAuth();
     useEffect(() => {
-        fetch(`http://localhost:5000/enrolledClass/${user.email}`)
+        fetch(`https://foreign-language-center-client.vercel.app/enrolledClass/${user.email}`)
           .then((res) => res.json())
           .then((data) => setEnrolled(data));
       }, []);

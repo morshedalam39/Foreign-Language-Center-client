@@ -7,7 +7,7 @@ const useClass =() =>{
     const { refetch, data= [], isLoading} = useQuery({
         queryKey: ['instractorClass', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/class/${user?.email}`)
+            const res = await fetch(`https://foreign-language-center-client.vercel.app/class/${user?.email}`)
             return res.json();
         },
     })

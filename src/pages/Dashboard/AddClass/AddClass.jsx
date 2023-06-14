@@ -34,7 +34,7 @@ const AddClass = () => {
             const newItem = { availableSeats: parseFloat(availableSeats) , className, instructorEmail, instructorName, price: parseFloat(price), image:imgURL, enroll: 0,
               status: 'pending',
               feedback: ''}
-            fetch('http://localhost:5000/class', {
+            fetch('https://foreign-language-center-client.vercel.app/class', {
               method: 'POST',
               headers: {
                   'content-type': 'application/json'

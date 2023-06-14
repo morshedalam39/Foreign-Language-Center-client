@@ -6,7 +6,7 @@ import { ThemeContext } from "@emotion/react";
 const PopularInstractor = () => {
   const [instractor, setInstractor] = useState();
   useEffect(() => {
-    fetch("http://localhost:5000/popularinstractor")
+    fetch("https://foreign-language-center-client.vercel.app/popularinstractor")
       .then((res) => res.json())
       .then((data) => setInstractor(data));
   }, []);

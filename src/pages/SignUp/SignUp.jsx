@@ -52,7 +52,7 @@ const SignUp = () => {
                 updateUserProfile(data.name, imgURL)
                     .then(() => {
                         const saveUser = { name: data.name, email: data.email, role:'student', image:imgURL }
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://foreign-language-center-client.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
