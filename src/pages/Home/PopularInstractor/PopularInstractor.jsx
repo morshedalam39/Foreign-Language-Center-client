@@ -13,7 +13,7 @@ const PopularInstractor = () => {
   useEffect(() => {
     AOS.init({duration: 2000});
 }, [])
-// hfuirhfuirhgtfu
+
   return (
     <div className="mt-12">
         <h1 className=" text-4xl font-semibold leading-none text-black text-center">Our Popular Instructor</h1>

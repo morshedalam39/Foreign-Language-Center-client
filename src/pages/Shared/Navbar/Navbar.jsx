@@ -30,7 +30,7 @@ const Navbar = () => {
       )}
     </>
   );
-
+// dark white mode
   const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light');
         useEffect(()=>{
             localStorage.setItem('theme', theme);
