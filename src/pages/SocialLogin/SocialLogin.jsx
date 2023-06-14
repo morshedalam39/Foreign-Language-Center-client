@@ -33,7 +33,7 @@ const SocialLogin = () => {
                     .then(() => {
                       axios
                       .post(`https://foreign-language-center-client.vercel.app/jwt`, { email: result.user.email })
-                      .then((response) => {localStorage.setItem("axcess_token", response.data)
+                      .then((response) => {localStorage.setItem("axcess_token", response.data.token)
                     
                       Swal.fire({
                         position: "top-center",

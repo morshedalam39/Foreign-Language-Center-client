@@ -1,45 +1,32 @@
-import React from "react";
-import { useNavigate, useRouteError } from "react-router-dom";
-import { FaAngleLeft } from "react-icons/fa";
-import img404 from "../../assets/error.gif";
+import React from 'react';
 
+import { Link } from 'react-router-dom';
+import err from '../../assets/error.gif'
 
 const Error = () => {
-  const { status, statusText } = useRouteError();
-  const navigate = useNavigate();
-  return (
-    <>
-      
-      <section className="py-5">
-        <div className="container">
-          <div className="card max-w-sm mx-auto bg-gray-200/60">
-            <figure>
-              <img src={img404} alt="" />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">Oops!</h2>
-              <h4 className="font-medium">
-                {status && statusText ? status + " " + statusText : null}
-              </h4>
-              <p className="text-gray-500">
-                Sorry, an error has occurred, Requested page not found!
-              </p>
-              <div className="card-actions justify-end">
-                <button
-                  className="btn btn-sm btn-accent"
-                  onClick={(_) => navigate(-1)}
-                >
-                  <FaAngleLeft />
-                  <span>Back</span>
-                </button>
-              </div>
+    return (
+        <div className='max-w-screen-xl mx-auto'>
+            <div className='flex items-center gap-5 flex-col md:flex-row'>
+                <div className='w-full md:w-6/12'>
+                    <section className="flex  items-center h-full p-16 dark:bg-gray-900 dark:text-gray-100">
+                        <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
+                            <div className="max-w-md text-center">
+                                <h2 className="mb-8 font-extrabold text-9xl dark:text-gray-600">
+                                    <span className="sr-only">Error</span>404
+                                </h2>
+                                <p className="text-2xl font-semibold md:text-3xl">Sorry, we couldn't find this page.</p>
+                                <p className="mt-4 mb-8 dark:text-gray-400">But dont worry, you can find plenty of other things on our homepage.</p>
+                                <Link rel="noopener noreferrer" to="/" ><button className="btn btn-neutral">Back to homepage</button></Link>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div className='w-full md:w-6/12'>
+                    <img src={err} className='w-full' alt="" />
+                </div>
             </div>
-          </div>
         </div>
-      </section>
-     
-    </>
-  );
+    );
 };
 
 export default Error;
