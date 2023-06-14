@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from "aos";
+import "aos/dist/aos.css"
 
 const Testimonial = () => {
+	useEffect(() => {
+		AOS.init({duration: 2000});
+	}, [])
+	
     return (
         <div>
             <section className="my-4 text-gray-100">
@@ -9,7 +15,7 @@ const Testimonial = () => {
         <hr className="w-96 mt-2 border-[3px] mx-auto border-stone-600" />
 	</div>
 	<div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:flex-wrap lg:justify-evenly lg:px-10 ">
-    <div className="flex flex-col max-w-sm mx-4 my-6 shadow-lg">
+    <div data-aos="fade-up" data-aos-anchor-placement="top-center"  className="flex flex-col max-w-sm mx-4 my-6 shadow-lg">
 			<div className="px-4 py-12 rounded-t-lg sm:px-8 md:px-12 bg-gray-200">
 				<p className="relative px-6 py-1 text-lg italic text-center text-black font-medium">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="w-8 h-8 text-violet-400">
@@ -28,7 +34,7 @@ const Testimonial = () => {
 				<p className="text-sm uppercase">Student</p>
 			</div>
 		</div>
-		<div className="flex flex-col max-w-sm mx-4 my-6 shadow-lg">
+		<div data-aos="fade-up" data-aos-anchor-placement="top-center"  className="flex flex-col max-w-sm mx-4 my-6 shadow-lg">
 		<div className="px-4 py-12 rounded-t-lg sm:px-8 md:px-12 bg-gray-200">
 				<p className="relative px-6 py-1 text-lg italic text-center text-black font-medium">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="w-8 h-8 text-violet-400">
@@ -47,7 +53,7 @@ const Testimonial = () => {
 				<p className="text-sm uppercase">Student</p>
 			</div>
 		</div>
-		<div className="flex flex-col max-w-sm mx-4 my-6 shadow-lg">
+		<div data-aos="fade-up" data-aos-anchor-placement="top-center"  className="flex flex-col max-w-sm mx-4 my-6 shadow-lg">
 		<div className="px-4 py-12 rounded-t-lg sm:px-8 md:px-12 bg-gray-200">
 				<p className="relative px-6 py-1 text-lg italic text-center text-black font-medium">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="w-8 h-8 text-violet-400">
@@ -66,7 +72,7 @@ const Testimonial = () => {
 				<p className="text-sm uppercase">Student</p>
 			</div>
 		</div>
-		<div className="flex flex-col max-w-sm mx-4 my-6 shadow-lg">
+		<div data-aos="fade-up" data-aos-anchor-placement="top-center"  className="flex flex-col max-w-sm mx-4 my-6 shadow-lg">
 		<div className="px-4 py-12 rounded-t-lg sm:px-8 md:px-12 bg-gray-200">
 				<p className="relative px-6 py-1 text-lg italic text-center text-black font-medium">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="w-8 h-8 text-violet-400">

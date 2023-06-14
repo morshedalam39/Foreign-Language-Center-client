@@ -79,7 +79,7 @@ const SelectedClasses = () => {
                   </button>
                 </td>
                 <td>
-                  <Link to={`/dashboard/payment${cls._id}`}>
+                  <Link to={`/dashboard/payment/${cls._id}`}>
                   <button className="btn btn-success btn-sm">Pay</button>
                   </Link>
                 </td>

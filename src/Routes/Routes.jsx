@@ -17,6 +17,7 @@ import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses"
 import UpdateMyClass from "../pages/Dashboard/MyClass/UpdateMyClass";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import Error from "../pages/Error/Error";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 
 
 
@@ -86,6 +87,10 @@ import Error from "../pages/Error/Error";
           path: 'payment/:id', 
           element:<Payment></Payment>,
           loader :({params})=> fetch(`http://localhost:5000/singleSelect/${params.id}`)
+        },
+        {
+          path: 'paymentHistory', 
+          element:<PaymentHistory></PaymentHistory>
         },
       ]
     },

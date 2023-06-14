@@ -101,6 +101,7 @@ const CheckoutForm = ({ data }) => {
                       email: user?.email,
                       className:className,
                       studentName:studentName,
+                      date: new Date()
 
                     })
                     .then((res) => {

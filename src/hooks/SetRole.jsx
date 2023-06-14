@@ -1,14 +1,16 @@
 
 import { useQuery } from 'react-query';
 import useAuth from './useAuth';
+import useAxiosSecure from './axiosSecure';
 
 const SetRole =() =>{
     const {user}=useAuth();
+    const axios =useAxiosSecure()
     const { refetch, data= {}, isLoading} = useQuery({
         queryKey: ['role', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/role?email=${user?.email}`)
-            return res.json();
+            const res = await axios(`/role?email=${user?.email}`)
+            return res.data;
         },
     })
 

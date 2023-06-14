@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css"
 
 const PopularInstractor = () => {
   const [instractor, setInstractor] = useState();
@@ -8,6 +10,10 @@ const PopularInstractor = () => {
       .then((data) => setInstractor(data));
   }, []);
 
+  useEffect(() => {
+    AOS.init({duration: 2000});
+}, [])
+
   return (
     <div className="mt-12">
         <h1 className=" text-4xl font-semibold leading-none text-black text-center">Our Popular Instructor</h1>
@@ -15,6 +21,7 @@ const PopularInstractor = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3  gap-6 mt-16 ">
         {instractor?.map((i) => (
           <div
+          data-aos="fade-up" data-aos-anchor-placement="top-center" 
             key={i._id}
             className="flex flex-col justify-center w-full px-8 mx-auto my-12 text-center rounded-md md:w-80 shadow-2xl bg-gray-200 dark:text-gray-800"
           >

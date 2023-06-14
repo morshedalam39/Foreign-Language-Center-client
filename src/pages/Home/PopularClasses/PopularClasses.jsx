@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css"
 
 const PopularClasses = () => {
   const [classes, setClasses] = useState();
+
+  useEffect(() => {
+    AOS.init({duration: 2000});
+}, [])
+
   useEffect(() => {
     fetch("http://localhost:5000/popularClass")
       .then((res) => res.json())
@@ -14,7 +21,7 @@ const PopularClasses = () => {
         <hr className="w-60 mt-2 border-[3px] mx-auto border-stone-600" />
       <div className="grid md:grid-cols-2 lg:grid-cols-3  gap-8 mt-8">
         {classes?.map((cls) => (
-          <div key={cls._id} className="card w-full bg-gray-200 shadow-xl">
+          <div data-aos="fade-up" data-aos-anchor-placement="top-center"  key={cls._id} className="card w-full bg-gray-200 shadow-xl">
             <figure className="px-10 pt-10">
               <img
                 src={cls.image}
